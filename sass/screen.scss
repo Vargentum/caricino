@@ -1,0 +1,332 @@
+@charset "utf-8";
+@import "compass/reset";
+
+@import "h5bp";
+@include h5bp-display;
+@include h5bp-selection;
+@include h5bp-chromeframe;
+@include h5bp-media;
+@include h5bp-base;
+@include h5bp-typography;
+@include h5bp-figures;
+@include h5bp-forms;
+@include h5bp-embeds;
+@include h5bp-tables;
+@include h5bp-helpers;
+//@include h5bp-links;
+//@include h5bp-lists;
+
+@import "compass";
+@import "compass/layout/sticky-footer";
+
+//SPRITING
+//@import "/*.png";
+
+//border-box-sizing for all elems
+*{@include box-sizing(border-box);}
+input[type=search]{@include box-sizing(border-box);}
+
+
+
+/*VARIABLES
+---------------------------------------------------------*/
+//color vars
+$color-title:#3e3e3e;
+$color-attention:#b60028;
+$color-service:grey;
+$color-body:#fff;
+$color-often:#836764;
+//base font vars
+$font-base-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+$font-base-size:13px;
+$font-base-line_height: 1.4;
+$font-base-color: #5a5a5a;
+//another fonts
+$font-title: Georgia, Times, "Times New Roman", serif;
+
+//fontkits(more than one font parameter)
+.fontkit-service{
+  font: italic $font-base-size $font-title;
+  color:$color-attention;
+}
+.fontkit-title{
+  font: 18px $font-title;
+  color:$color-title;
+}
+.fontkit-label{
+  text-transform: uppercase;
+  color:$color-body;
+  font-size: 12px;
+}
+
+//layout vars
+$width-base: 980px;
+/*fix cropping background on mobiles, if fluid layout - delete this*/
+$width-base-minimal: $width-base;
+//$width-base-min: 980px;
+//$width-base-max: 1280px;
+$height-footer:110px;
+
+
+
+//links
+$color-link-default:#b53228;
+$color-link-hover:#b53228;
+$color-link-active:#b53228;
+$color-link-visited:#b53228;
+$color-link-focused:#b53228;
+a{
+  text-decoration: none;
+  @include link-colors($color-link-default, $color-link-hover, $color-link-active, $color-link-visited, $color-link-focused);
+  @include single-transition(all,.4s,ease,0s);
+  &.current{color:$color-link-hover;}
+  &:focus {outline: thin dotted;}
+  &:active,&:hover {outline: none;}
+}
+@mixin link-hover_focus($property, $value) {&:hover, &:active, &:focus {#{$property}: $value;}}
+@mixin link-active($property, $value) {&:hover, &:active, &:focus {#{$property}: $value;}}
+@mixin link-simple-colors($startColor, $behaviorColor){@include link-colors($startColor,$behaviorColor,$startColor, $startColor, $behaviorColor);}
+
+
+
+/*MEDIA mixins
+---------------------------------------------------------*/
+@mixin respond-to($media) {
+  @if $media == ie10{
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {@content;}
+  }
+  @else if $media == width1024{
+    @media only screen and (max-width: 1024px) { @content; }
+  }
+}
+
+/*HELPER CLASSES
+---------------------------------------------------------*/
+//floats
+.float_lt{float: left;}
+.float_rt{float: right;}
+//vertical centering mixin
+.vCtr{
+  display: table-cell;
+  height: inherit;
+  vertical-align: middle;
+}
+//pseudo elems mixin
+.pseudoBlockAbs{
+  content: '';
+  display: block;
+  position: absolute;
+}
+.text-hide {
+    font: 0/0 serif;
+    text-shadow: none;
+    color: transparent;
+}
+//base horisontal mixin
+.hList{&>*{@include inline-block;}}
+.hList_top{
+  &>*{@include inline-block; vertical-align: top;}
+}
+//justify list mixin
+.jList{
+  text-align: justify;
+  line-height: 0;
+  font-size: 1px;
+  text-justify: newspaper;
+  zoom:1;
+  text-align-last: justify;
+  &:after{
+    content: "";
+    display: inline-block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    width: 100%;
+  }
+  >*{
+    text-align: left;
+    @include inline-block;
+    line-height: $font-base-line_height;
+    font-size: $font-base-size;
+  }
+}
+.jList_top{
+  @extend .jList;
+  >*{vertical-align: top;}
+}
+//mixin for elems in string which full all parent container
+.fList{
+  .flexbox &{
+    @include display-box;
+    @include box-pack(justify);
+    &>*{@include box-flex(1);}
+  }
+  .no-flexbox &{@extend .jList;}
+}
+
+//hack for ie9 - need for gradient backgrounds
+:root .gradient {filter: none \0/IE9; }
+.ie9-gradient-support{$experimental-support-for-svg: true; @extend .gradient;}
+
+
+.arrowBefore:before{content: '←'; margin-right: 3px;}
+.arrowAfter:after{content: '→'; margin-left: 3px;}
+.button{
+  padding:10px 20px;
+  @include link-simple-colors(#70390f, #70390f);
+  @include border-radius(10px);
+  background-color: #ffcc01;
+  @include box-shadow(1px 1px 1px rgba(0,0,0,.29), inset 1px 1px 1px rgba(255,255,255,.44));
+  border: solid 5px $color-often;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255,255,255,.53), inset 2px 3px 6px rgba(0,0,0,.45);
+  @include single-transition(all,.4s,ease,0s);
+  @include inline-block;
+  &:hover, &:focus{@include scale();}
+  &:active{outline: none;}
+}
+.gradient-attention{
+  background-color: rgb(176,201,133);
+  @include filter-gradient(#b0c985, #4a692e, vertical);
+  @include background-image(linear-gradient(top,  rgba(176,201,133,1) 0%,rgba(140,178,79,1) 2%,rgba(125,165,51,1) 4%,rgba(106,147,45,1) 30%,rgba(72,109,31,1) 70%,rgba(60,95,27,1) 89%,rgba(58,90,23,1) 94%,rgba(55,90,24,1) 98%,rgba(74,105,46,1) 100%));
+  @extend .ie9-gradient-support;
+}
+.gradient-attention-rare{
+  background-color: rgb(235,85,120);
+  @include filter-gradient(#eb5578, #b9002a, vertical);
+  @include background-image(linear-gradient(top,  rgba(235,85,120,1) 0%,rgba(229,29,78,1) 2%,rgba(224,0,57,1) 4%,rgba(223,0,53,1) 9%,rgba(219,0,54,1) 11%,rgba(201,0,47,1) 38%,rgba(187,1,42,1) 77%,rgba(185,0,42,1) 100%));
+  @extend .ie9-gradient-support;
+}
+
+/*DEFAULT STYLES
+--------------------------------------------*/
+h1.defaultCss{font-size: 2em;margin: 0.67em 0;}
+h2.defaultCss{font-size: 1.5em;margin: 0.83em 0;}
+h3.defaultCss{font-size: 1.17em;margin: 1em 0;}
+h4.defaultCss{font-size: 1em;margin: 1.33em 0;}
+h5.defaultCss{font-size: 0.83em;margin: 1.67em 0;}
+h6.defaultCss{font-size: 0.75em;margin: 2.33em 0;}
+ul.defaultCss{margin: 18px 0; padding: 0 0 0 40px; list-style-type: disc;}
+ol.defaultCss{margin: 18px 0; padding: 0 0 0 40px; list-style-type: decimal;}
+.defaultCss p,
+p.defaultCss{margin-bottom: 18px;}
+
+input.defaultCss{}
+textarea.defaultCss{}
+radio{}
+checkbox{}
+
+
+/*LAYOUT
+----------------------------------------------------------*/
+
+html, button, input, select, textarea {
+  height: 100%;
+  font-family: $font-base-family;
+  color: $font-base-color;
+}
+body {
+  height: 100%;
+  font-size: $font-base-size;
+  line-height: $font-base-line_height;
+}
+@include sticky-footer($height-footer, ".page-body", ".helper-footer", ".page-footer");
+.page-body{
+  width: $width-base;
+  min-width:$width-base;
+  //min-width: $width-base-min;
+  //max-width: $width-base-max;
+  margin-left:auto;
+  margin-right: auto;
+}
+.page-width{
+  width:$width-base;
+  min-width: $width-base;
+  //min-width: $width-base-min;
+  //max-width: $width-base-max;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+/*mixins
+--------------------------------------------*/
+@mixin border-1-solid($dir){border-#{$dir}:1px solid $borderColor;}
+@mixin columnize($count){
+  .csscolumns &{@include column-count(#{$count});}
+}
+
+
+/*HEADER elements styles
+---------------------------------------------*/
+.page-header{}
+.page-header__logo{
+   text-decoration:none;
+  .name{@extend .text-hide;}
+}
+.page-header__nav{
+  ul{
+    @extend .hList;
+    //@extend .fList;
+  }
+  .unit{}
+}
+
+/*FOOTER elements styles
+---------------------------------------------*/
+.page-footer{
+  position: relative;
+  width: $width-base;
+  margin-left: auto;
+  margin-right: auto;
+  //min-width: $width-base-min;
+  //max-width: $width-base-max;
+}
+.page-footer__logo{
+   text-decoration:none;
+  .name{@extend .text-hide;}
+}
+.page-footer__nav{
+  ul{@extend .hList;}
+  .unit{}
+}
+.page-footer__copy{}
+
+
+/*independent blocks
+-----------------------------------------------------------------------------------------------*/
+.b-crumbs{
+  ul{@extend .hList;}
+  .unit{}
+}
+
+
+/*INDEX page specific elements styles
+-----------------------------------------------------------------------------------------------*/
+
+/*SOME page specific elements styles
+------------------------------------------------------------------------------------------------*/
+/*SOME page specific elements styles
+------------------------------------------------------------------------------------------------*/
+
+/*PLUGINS styles
+------------------------------------------------------------------------------------------------*/
+
+/*DIRTY HACKS
+------------------------------------------------------------------------------------------------*/
+//firefox
+@-moz-document url-prefix() {}
+
+//opera
+@media (min-resolution: .001dpcm) {
+  _:-o-prefocus, body {}
+}
+
+//debug
+* { outline: 2px dotted red; }
+* * { outline: 2px dotted green; }
+* * * { outline: 2px dotted orange; }
+* * * * { outline: 2px dotted blue; }
+* * * * * { outline: 1px solid red; }
+* * * * * * { outline: 1px solid green; }
+* * * * * * * { outline: 1px solid orange; }
+* * * * * * * * { outline: 1px solid blue; }
