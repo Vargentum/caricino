@@ -21,75 +21,149 @@
 <div class="page-body">
 
   <!-- HEADER -->
-  <header class="page-header" itemscope itemtype='http://schema.org/WPHeader'>
-    <!--logo-->
-    <a class="page-header__logo" href="index.html" itemprop='url'>
-      <img src="images/page-header__logo.png" alt="" itemprop='image'>
-      <span class="name" itemprop="name"></span>
-    </a>
-    <!--navigation-->
-    <nav class="page-header__nav" itemscope itemtype='http://schema.org/SiteNavigationElement'>
-      <ul>
-        <li><a href="#" class="unit active"></a></li>
-        <li><a href="#" class="unit"></a></li>
-      </ul>
-    </nav>
+  <header class="page-header" itemscope itemtype='http://schema.org/Hotel'>
+    <!--left part-->
+    <div class="page-header__left">
+      <!--logo-->
+      <a class="page-header__logo" href="index.html" itemprop='url'>
+        <img src="images/page-header__logo.png" alt="" itemprop='logo' itemscope itemtype='http://schema.org/ImageObject'>
+        <span class="name" itemprop="name">Гостиничный комплекс Орехово-Царицыно</span>
+      </a>
+      <!--navigation-->
+      <nav class="page-header__left__nav" itemscope itemtype='http://schema.org/SiteNavigationElement'>
+        <a href="#" class="unit">главная</a>
+        <a href="#" class="unit">номерной фонд</a>
+        <a href="#" class="unit">услуги и стоимость</a>
+        <a href="#" class="unit">фотогалерея</a>
+        <a href="#" class="unit">такси и трансфер</a>
+        <a href="#" class="unit">контакты</a>
+      </nav>
+    </div>
+    <!--bottom stripe-->
+    <div class="page-header__bottom">
+      <span class="page-header__slogan">Номера <span class="attention">от 2500руб</span>, бесплатный трансфер в аэропорт Домодедово</span>
+      <nav class="page-header__bottom__nav">
+        <a href="#" class="unit">Отзывы</a>
+        <a href="#" class="unit">Новости</a>
+        <a href="#" class="unit">Это интересно</a>
+      </nav>
+    </div>
+    <!--absolute positioned elems-->
+    <div class="page-header__buttons_top">
+      <a href="#" class="unit">корпус "Орехово"</a>
+      <a href="#" class="unit">корпус "Царицыно"</a>
+    </div>
+    <address class="page-header__phone" itemprop='telephone'><sup>+7(499)</sup> 678 80 10</address>
+    <a href="#" class="page-header__mapLink" itemprop='map'>map</a>
+    <!--units in this block is invisible and imgs are instead it-->
+    <ul class="page-header__benefits">
+      <li>Комфорт повышенной доступности в историческом уголке Москвы</li>
+      <li>Станция метро 50м</li>
+      <li>Прямая дорога в аэропорт</li>
+    </ul>
   </header><!--END HEADER-->
-
 
 
   <!--START page template-->
   <div class="page-template" role="main">
-    <!--breadcrumbs-->
-    <nav class="b-crumbs" itemprop='breadcrumb'>
-      <ul>
-        <li><a href="#" class="unit"></a></li>
-        <li><a href="#" class="unit"></a></li>
-      </ul>
-    </nav>
-
-    <!--main column with content-->
-    <div class="page-template__content">
-      <a href="#" class="button">adfkljas;d</a>
-    </div>
-    <!--end main column with content-->
-
-    <!--left sidebar-->
-    <aside class="page-template-sidebar_lt" itemscope itemtype='http://schema.org/WPSideBar'></aside>
-    <!--end left sidebar-->
-
-    <!--right sidebar-->
-    <aside class="page-template-sidebar_rt" itemscope itemtype='http://schema.org/WPSideBar'></aside>
-    <!--end right sidebar-->
-
+    <h1 class="page-template__title">Заголовок</h1>
   </div><!--END page template-->
+
+  <!--left sidebar-->
+  <aside class="page-aside" itemscope itemtype='http://schema.org/WPSideBar'>
+    <!--starting purchase vidget-->
+    <form class="page-aside__purchaseVidget">
+      <h2 class="title">Выберите дату поселения:</h2>
+      <div class="page-aside__datepicker"></div>
+      <button type="submit" class="button">выбрать номер</button>
+    </form>
+    <!--banner-->
+    <a href="#" class="page-aside__bnr bnr_with_car">
+      <span class="label">Встречи и проводы </span>
+      <img src="images/page-aside__bnr1.jpg" class="image" alt="">
+    </a>
+    <!--banner-->
+    <a href="#" class="page-aside__bnr">
+      <span class="label">Банкеты и тренинги</span>
+      <img src="images/page-aside__bnr2.jpg" class="image" alt="">
+    </a>
+    <!--banner-->
+    <a href="#" class="page-aside__bnr">
+      <span class="label">Отель на схеме метро</span>
+      <img src="images/page-aside__bnr3.jpg" class="image" alt="">
+    </a>
+    <!--aside feedbacks-->
+    <section class="page-aside__feedbacks">
+      <header class="hList">
+        <h2 class="title">Отзывы о нас</h2>
+        <a href="#" class="view_all">все отзывы</a>
+      </header>
+      <!--feedback-->
+      <div class="unit">
+        Большое спасибо персоналу гостиницы!теплый прием,хорошее обслуживание,молодцы,очень было приятно остановиться!
+        <span class="unit__author">Нигмадзянова Зоя</span>
+      </div>
+      <!--feedback-->
+      <div class="unit">
+        Большое спасибо персоналу гостиницы!теплый прием,хорошее обслуживание,молодцы,очень было приятно остановиться!
+        <span class="unit__author">Нигмадзянова Зоя</span>
+      </div>
+      <!--feedback-->
+      <div class="unit">
+        Большое спасибо персоналу гостиницы!теплый прием,хорошее обслуживание,молодцы,очень было приятно остановиться!
+        <span class="unit__author">Нигмадзянова Зоя</span>
+      </div>
+    </section>
+  </aside>
+  <!--end left sidebar-->
 
   <div class="helper-footer"></div>
 </div><!-- END page-body -->
 
 <!-- FOOTER -->
 <footer class="page-footer" itemscope itemtype='http://schema.org/WPFooter'>
-  <!--logo-->
-  <a class="page-footer__logo" href="index.html" itemprop='url'>
-    <img src="images/page-footer__logo.png" alt="" itemprop='image'>
-    <span class="name" itemprop="name"></span>
-  </a>
-  <!--copy-->
-  <small class="page-footer__copy"></small>
-  <!--navigation-->
-  <nav class="page-footer__nav" itemscope itemtype='http://schema.org/SiteNavigationElement'>
-    <ul>
-      <li><a href="#" class="unit"></a></li>
-      <li><a href="#" class="unit"></a></li>
-    </ul>
-  </nav>
+  <div class="page-footer__content">
+    <div>
+      <!--navigation-->
+      <nav class="page-footer__nav">
+        <a href="#" class="unit">Главная</a>
+        <a href="#" class="unit">Номерной фонд</a>
+        <a href="#" class="unit">Услуги и стоимость</a>
+        <a href="#" class="unit">Фотогалерея</a>
+        <a href="#" class="unit">Такси и трансфер</a>
+        <a href="#" class="unit">Контакты</a>
+      </nav>
+      <small class="page-footer__copy">
+        All Rights Reserved, © 2012
+        <a href="#">site.ru</a>
+        e-mail: <a href="mailto:info@site.ru">info@site.ru</a>
+      </small>
+    </div>
+    <!--logo-->
+    <a class="page-footer__logo" href="index.html">
+      <img src="images/page-footer__logo.png">
+      <span class="name">Jethotel.ru</span>
+    </a>
+    <div>
+      <!--social buttons-->
+      <div class="page-footer__social">
+        <a href="#" class="unit unit-1">Facebook</a>
+        <a href="#" class="unit unit-2">Vkontakte</a>
+        <a href="#" class="unit unit-3">Twitter</a>
+      </div>
+      <div class="page-footer__counter">
+        <img src="images/tmp/page-footer__counter.png" alt="">
+      </div>
+    </div>
+  </div>
 </footer>
 <!-- END FOOTER -->
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
-<script src="js/vendor/jquery.columnizer.min.js"></script>
+<script src="js/plugins/jquery-ui-1.9.2.datepicker.min.js"></script>
+<script src="js/plugins/jquery.columnizer.min.js"></script>
 <script src="js/plugins/placeholder-min.js"></script>
 <script src="js/main.js"></script>
 
