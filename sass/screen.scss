@@ -32,7 +32,7 @@ input[type=search]{@include box-sizing(border-box);}
 ---------------------------------------------------------*/
 //color vars
 $color-title:#3e3e3e;
-$color-attention:#b60028;
+$color-attention:#d40037;
 $color-button:#ffcc01;
 $color-service:grey;
 $color-body:#fff;
@@ -71,11 +71,11 @@ $height-footer:110px;
 
 
 //links
-$color-link-default:#b53228;
-$color-link-hover:#b53228;
-$color-link-active:#b53228;
-$color-link-visited:#b53228;
-$color-link-focused:#b53228;
+$color-link-default:$color-attention;
+$color-link-hover:$color-button;
+$color-link-active:$color-attention;
+$color-link-visited:$color-attention;
+$color-link-focused:$color-button;
 a{
   text-decoration: none;
   @include link-colors($color-link-default, $color-link-hover, $color-link-active, $color-link-visited, $color-link-focused);
@@ -214,15 +214,30 @@ h5.defaultCss{font-size: 0.83em;margin: 1.67em 0;}
 h6.defaultCss{font-size: 0.75em;margin: 2.33em 0;}
 ul.defaultCss{margin: 18px 0; padding: 0 0 0 40px; list-style-type: disc;}
 ol.defaultCss{margin: 18px 0; padding: 0 0 0 40px; list-style-type: decimal;}
-.defaultCss p,
-p.defaultCss{margin-bottom: 18px;}
-
 input.defaultCss{}
 textarea.defaultCss{}
 radio{}
 checkbox{}
-
-
+.figure{position: relative;}
+.figcaption{
+  position: absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  background-color: #000;
+  background-color: rgba(0,0,0,.5);
+  color:$color-body;
+  text-transform: uppercase;
+  padding:10px;
+  &.center{text-align: center;}
+}
+.defaultCss p, p.defaultCss{margin-bottom: 18px;}
+.defaultCss{
+  figure{@extend .figure;}
+  figcaption{
+    @extend .figcaption;
+  }
+}
 /*LAYOUT
 ----------------------------------------------------------*/
 
@@ -355,9 +370,26 @@ body {
       .unit{
         display: block;
         padding:3px 0 3px 60px;
+        position: relative;
         text-transform: uppercase;
         @include link-simple-colors($color-title,$color-title);
         &:hover,&:focus{padding-left: 70px;}
+        &.current{
+          color:$color-attention;
+          font-weight: bold;
+          &:hover,&:focus{padding-left:60px;}
+          &:before{
+            @extend .pseudoBlockAbs;
+            left:52px;
+            top:50%;
+            margin-top: -4px;
+            width: 5px;
+            height: 7px;
+            background-repeat: no-repeat;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAHCAYAAADAp4fuAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADlJREFUeNpi3Mag8Z8BCDz/X2dkgAImGGc7o+Z/uCCyKpgE4///cAVwQSZ0AZAuJnQBsHZstgMEGAB7lRzjg4YT/wAAAABJRU5ErkJggg==);
+            .ie8 &{background-image: url("../images/convertedToData/page-header__nav__arrow.png");}
+          }
+        }
       }
     }
   .page-header__bottom{
@@ -410,7 +442,6 @@ body {
     padding:0 5px 0 10px;
     border-left: 1px solid $color-attention;
     @include link-simple-colors($color-attention,$color-attention);
-    &:focus,&:hover{@include scale();}
     &:first-child{
       border-left: none;
       padding-left: 0;
@@ -498,7 +529,6 @@ body {
   .image{@extend .border-image;}
 }
 .page-aside__feedbacks{
-
   .title{
     @extend .fontkit-title;
     vertical-align: sub;
@@ -533,33 +563,180 @@ body {
 .page-template{
   margin-bottom: 160px;
   float: right;
-  width:700px;
+  width:710px;
 }
-.page-template__title{
-  @extend .fontkit-title;
-}
+.page-template__title,
+.page-template__h1{@extend .fontkit-title;}
+.page-template__h2{text-transform: uppercase;margin:5px 0;}
 
 .page-template__pagination{
-  ul{@extend .hList;}
-  .unit{}
+  padding:6px 0;
+  background-color: $color-often;
+  text-align: center;
+  .unit{
+    @include link-simple-colors($color-body, $color-often);
+    padding:3px 7px;
+    font-weight: bold;
+    @include border-radius(3px);
+    background-color: #5f4947;
+    &:hover,&:focus,&.current{
+      background-color: $color-button;
+    }
+  }
 }
 
 
 /*INDEX page specific elements styles
 -----------------------------------------------------------------------------------------------*/
 
+/*BANQUET page specific elements styles
+------------------------------------------------------------------------------------------------*/
+.page-template__banquet{
+  border-bottom: 35px solid #e5e5e5;
+  padding-bottom:10px;
+  margin-bottom:10px;
+  .title{
+    @extend .fontkit-title;
+    margin-bottom: 10px;
+  }
+  p{margin:10px 0;}
+}
+/*MEETING page specific elements styles
+------------------------------------------------------------------------------------------------*/
+.page-meeting__aside{
+  @extend .page-aside;
+  width:330px;
+  .page-aside__feedbacks{margin-top: 15px;}
+}
+.page-meeting{
+  @extend .page-template;
+  width:640px;
+  @extend .defaultCss;
+}
+.page-meeting__title{
+  margin:20px 0 5px;
+  text-transform: uppercase;
+  color:$color-title;
+}
+.page-meeting__price{
+  margin-bottom:10px;
+  @extend .bg-pattern;
+  @extend .hList;
+  .content{margin-left: 50px;}
+  .attention{
+    font-size: 18px;
+    font-weight: bold;
+    color:$color-attention;
+  }
+}
+/*subway_map page specific elements styles
+------------------------------------------------------------------------------------------------*/
+.page-subway_map{
+  margin-bottom:160px;
+  .scheme{
+    text-align: center;
+    img{@include inline-block;}
+  }
+}
+/*FEEDBACKS page specific elements styles
+------------------------------------------------------------------------------------------------*/
+.page-template__feedbacks{
+  border-bottom:35px solid $color-often;
+  .unit{
+    text-indent: 20px;
+    margin-top: 10px;
+    font-family: $font-title;
+    font-style: italic;
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAZpJREFUeNqMkb1rFEEYxp+ZnZ27nNErBEFIF4ikSGthYeM/oCAhhMsfIBaCpUiIIBiLkEJBbAKJjWBhkeCRJgmKjYSAhZLGj+YCObLJLpvb3fl4Z509uS7Re+ApZnh+8wzvy8qyxEAf9pamyNkZS/omOX3NOSIw9o2zYFsE8u3t649/DLKsAjd2l+o+9FyZ3v1MxUGmEiibwZKqIvAQ6uFo3qg1F72f3r2x4ERFG2NWe0U8fZweIMm6UPoU1hm4kvqv+0aEQW2kLkefNC9cueqv7rF3H5/NeWjt8OQ3orSDQqUecDhLnAdoyIu43By7I4qiaEVxF4dRB6d5jPIc6K8Iymes4S3Ry/LJ6CRCkqTQ1uD/IpBJpoTS5lOWF7NZrv0wCMOIrP4qHAUrcLVZqzkKPRwIyVb763j0cu7Nr4P9VpxG8Gv5J+MHtNx+8fMhrw4N2fxSF5fgLIcq6Dwfk2EPKqhi+nsMuBwLgwbgxI73+1DIiRLluG/n/kcd3/JZhnK9/ep7d9AsltfmOVF5xMBvbb7e38KQ+iPAAABK4uBF15AuAAAAAElFTkSuQmCC);
+    .ie87 &{background-image: url("../images/convertedToData/page-aside__feedbacks__unit.png")}
+  }
+  .unit__info{
+    text-align: right;
+    font-family: $font-base-family;
+    font-style: normal;
+    font-weight: bold;
+    color:$color-title;
+  }
+  .unit__author{margin-left: 5px;}
+  .button_wrap{
+    text-align: center;
+    margin:25px 0 -23px;
+  }
+}
+/*TRANSFER page specific elements styles
+------------------------------------------------------------------------------------------------*/
+.page-transfer{
+  margin-bottom: 160px;
+  .reminder{margin-bottom: 10px;color:$color-attention;}
+}
+.page-transfer__promo{
+  @extend .hList;
+  margin-bottom:60px;
+  @extend .bg-pattern;
+  position: relative;
+  &:before{
+    @extend .pseudoBlockAbs;
+    width:100%;
+    height: 35px;
+    background-color: #e5e5e5;
+    bottom:-50px;
+    left:0;
+  }
+  .content{
+    width:320px;
+    margin-left:5px;
+  }
+  .button{
+    text-align: center;
+    width:100%;
+  }
+}
+/*GALLERY page specific elements styles
+------------------------------------------------------------------------------------------------*/
+.page-gallery{
+  margin: 20px 0 160px;
+  .unit{margin-bottom: 20px;}
+  .unit__content{font-weight: bold;}
+  .page-template__pagination{margin-top: 20px;}
+}
+/*NEWS page specific elements styles
+------------------------------------------------------------------------------------------------*/
+.page-template__news{
+  @extend .jList_top;
+  time{
+    display: block;
+    margin:10px 0 2px;
+    font-weight: bold;
+    color:$color-title;
+    padding-left:24px;
+    position: relative;
+    &:before{
+      @extend .pseudoBlockAbs;
+      left:0;
+      top:-1px;
+      width: 16px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJJJREFUeNpi3MagwQAEAkB8H0p/AGJBBkyAVQ0TmoJEKI0LYKgBGdAAxO/RFP7HgrGpaWAEeuE/AwWAiYFCgGwAyG+MROJCmCaKvcCCxGYkUe9/qocBMmiA2QAE/UC8H0s0YoQBIxYnwsQMgPg8mhqivWAAdUEiKV7oR6Jh7HhSvUBULLCgC5ATC40UxGIjQIABAG8TJUHcwPcTAAAAAElFTkSuQmCC);
+      .ie8 &{background-image: url("../images/convertedToData/time_icon.png")}
+    }
+  }
+  .unit{width:230px;margin:10px 0;}
+}
 /*SOME page specific elements styles
 ------------------------------------------------------------------------------------------------*/
+
 /*SOME page specific elements styles
 ------------------------------------------------------------------------------------------------*/
+
+/*SOME page specific elements styles
+------------------------------------------------------------------------------------------------*/
+
 
 /*PLUGINS styles
 ------------------------------------------------------------------------------------------------*/
-/*! jQuery UI - v1.9.2 - 2012-11-25
-* http://jqueryui.com
-* Includes: jquery.ui.core.css, jquery.ui.datepicker.css
-* Copyright (c) 2012 jQuery Foundation and other contributors Licensed MIT */
-
 /*! jQuery UI - v1.9.2 - 2012-11-25
 * http://jqueryui.com
 * Includes: jquery.ui.core.css, jquery.ui.datepicker.css
@@ -654,19 +831,11 @@ body {
 .ui-datepicker-multi .ui-datepicker-buttonpane { clear:left; }
 .ui-datepicker-row-break { clear:both; width:100%; font-size:0em; }
 
-/* RTL support */
-.ui-datepicker-rtl { direction: rtl; }
-.ui-datepicker-rtl .ui-datepicker-prev { right: 2px; left: auto; }
-.ui-datepicker-rtl .ui-datepicker-next { left: 2px; right: auto; }
-.ui-datepicker-rtl .ui-datepicker-prev:hover { right: 1px; left: auto; }
-.ui-datepicker-rtl .ui-datepicker-next:hover { left: 1px; right: auto; }
-.ui-datepicker-rtl .ui-datepicker-buttonpane { clear:right; }
-.ui-datepicker-rtl .ui-datepicker-buttonpane button { float: left; }
-.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current { float:right; }
-.ui-datepicker-rtl .ui-datepicker-group { float:right; }
-.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
-.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
-
+/*MODIFICATORS
+------------------------------------------------------------------------------------------------*/
+.margin-10_0{margin:10px 0;}
+.margin-20_0{margin:20px 0;}
+.upCase{text-transform: uppercase;}
 /*DIRTY HACKS
 ------------------------------------------------------------------------------------------------*/
 //firefox
