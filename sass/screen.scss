@@ -20,7 +20,8 @@
 @import "compass/layout/sticky-footer";
 
 //SPRITING
-//@import "/*.png";
+@import "sprites/booking_nav__icons/*.png";
+@import "sprites/icon_room/*.png";
 
 //border-box-sizing for all elems
 *{@include box-sizing(border-box);}
@@ -169,6 +170,24 @@ a{
 :root .gradient {filter: none \0/IE9; }
 .ie9-gradient-support{$experimental-support-for-svg: true; @extend .gradient;}
 
+.icon-square{
+  >*{@include inline-block;}
+  position: relative;
+  &:before{
+    content: '';
+    @include inline-block;
+    margin-right: 10px;
+    width:40px;
+    height: 40px;
+  }
+  &:after{
+    @extend .pseudoBlockAbs;
+    width:40px;
+    height: 40px;
+    top:50%;
+    margin-top: -20px;
+  }
+}
 
 .arrowBefore:before{content: '←'; margin-right: 3px;}
 .arrowAfter:after{content: '→'; margin-left: 3px;}
@@ -212,12 +231,18 @@ h3.defaultCss{font-size: 1.17em;margin: 1em 0;}
 h4.defaultCss{font-size: 1em;margin: 1.33em 0;}
 h5.defaultCss{font-size: 0.83em;margin: 1.67em 0;}
 h6.defaultCss{font-size: 0.75em;margin: 2.33em 0;}
-ul.defaultCss{margin: 18px 0; padding: 0 0 0 40px; list-style-type: disc;}
-ol.defaultCss{margin: 18px 0; padding: 0 0 0 40px; list-style-type: decimal;}
-input.defaultCss{}
-textarea.defaultCss{}
-radio{}
-checkbox{}
+ul.defaultCss,
+.defaultCss ul{margin: 18px 0; padding: 0 0 0 18px; list-style-type: disc;}
+ol.defaultCss{margin: 18px 0; padding: 0 0 0 18px; list-style-type: decimal;}
+input{
+  height: 20px;
+  border:2px solid #d3c1b4;
+}
+textarea{
+  border:2px solid #d3c1b4;
+  padding:3px 0;
+}
+input[type=radio],input[type=checkbox]{height: auto; width:auto;}
 .figure{position: relative;}
 .figcaption{
   position: absolute;
@@ -566,7 +591,7 @@ body {
   width:710px;
 }
 .page-template__title,
-.page-template__h1{@extend .fontkit-title;}
+.page-template__h1{@extend .fontkit-title;margin-bottom: 5px;}
 .page-template__h2{text-transform: uppercase;margin:5px 0;}
 
 .page-template__pagination{
@@ -725,6 +750,220 @@ body {
   }
   .unit{width:230px;margin:10px 0;}
 }
+/*CONTACTS page specific elements styles
+------------------------------------------------------------------------------------------------*/
+
+.page-contacts__address{
+  margin:15px 0;
+  @extend .icon-square;
+  &:before{@extend .gradient-attention;}
+  &:after{
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAnCAMAAAC7faEHAAAAM1BMVEX////////////////y8vL6+vr////////////w8PD29vb///////////8AAADv7+////9Hoec8AAAAD3RSTlOPIFBw27OAoGDux0AwEABR2yvpAAAArklEQVR42u3UsQ7DIAwEUBIgBAPF//+1rbDSS5FdpVuG3hb5wWBOcY9r+btrrnniV3IqX93a+UhstnN8Sq6W80ADNt1VnhJ1RzynaG45bill7zySNLfLzI/1CMya294jHNJcGhOSj2K77SfHst1oOFwRKs6Qur/OEqLMEq+6jaf0pr9vmNxq9GDpH8yZvapnmKz+AYLBaRAMboaonunQgNBMBwimOsDQbvvfuJt7An4lU3ZBGB7NAAAAAElFTkSuQmCC");
+    .ie8 &{background-image: url("../images/convertedToData/page-contacts__address.png")}
+  }
+}
+.page-contacts__telephone{
+  margin:15px 0;
+  @extend .icon-square;
+  &:before{@extend .gradient-attention;}
+  &:after{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAnCAMAAAC7faEHAAAAM1BMVEXw8PD////6+vr29vb////////////////////////y8vL///////////8AAADv7+////9vm8iLAAAAD3RSTlPuQLPHIHCPoFAQ24BgMAB+q8DQAAAAmElEQVR42u3TvQrDMAwE4DTxv6xK7/+0RRHUjYdchg4N9BZ7+DAI65bntfzd91ztRBU7bqqasDOmC3RR9zByyV286Bpy5E6QK84YzivOoMv2XsAumMvY+SQFOv8RYexYHMK96mqw2E3W+JjcDHVlP3Xj4WZ4SB5uhvLp0uwO6zrST/pR6c3aeY9CFh+jor7VQkT9x3p+Z/cCyvlS9aCmdfYAAAAASUVORK5CYII=);
+    .ie8 &{background-image: url(../images/convertedToData/page-contacts__telephone.png);}
+  }
+}
+.page-contacts__email{
+  margin:15px 0;
+  @extend .icon-square;
+  &:before{@extend .gradient-attention;}
+  &:after{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAnCAMAAAC7faEHAAAAElBMVEX////////29vb///8AAAD///9QsTFtAAAABXRSTlOPEMegAJsjSkEAAABiSURBVHja7dM7CgAhDEVRf9n/lhXhwkzIk5lGLLyNhJwypvat6w51uVhQyd7BPPTORIGrZmOkMdXYzdWTNeGAMOmAvMIBYMoBYcoBYcoBYcoBYdLRTif6f1frOz3lH133qgNy2xhymNI2UAAAAABJRU5ErkJggg==);
+    .ie8 &{background-image: url(../images/convertedToData/page-contacts__email.png);}
+  }
+}
+.page-contacts__feedback{
+  margin:15px 0;
+  .title{@extend .page-template__h1;margin-bottom: 10px;}
+  .content{
+    text-align: right;
+    margin:15px 90px 15px 0;
+    .unit{
+      display: block;
+      @extend .hList_top;
+      margin-bottom: 10px;
+    }
+    .unit__label{
+      margin-right: 15px;
+      font:italic 14px $font-title;
+    }
+    .unit__content{
+      width:390px;
+    }
+    textarea{height: 125px;}
+    .button{
+      border:none;
+      padding-left:40px;
+      padding-right: 40px;
+    }
+  }
+}
+/*BOOKING specific elements styles
+------------------------------------------------------------------------------------------------*/
+.page-booking__nav{
+  margin:10px 0;
+  @extend .hList;
+  .unit{
+    height: 54px;
+    background-image: url("../images/convertedToData/page-booking__nav/unit.png");
+    width:280px;
+    &:hover,&:focus,&.current{background-image: url("../images/convertedToData/page-booking__nav/unit_active.png");}
+    &>a{
+      position: relative;
+      padding-left: 100px;
+      @extend .vCtr;
+      height: 54px;
+      font:italic 13px $font-title;
+      @include link-simple-colors($color-body,$color-body);
+      &:hover,&:focus{}
+    }
+    &.unit-1{
+      background-image: url("../images/convertedToData/page-booking__nav/unit_first.png");
+      &:hover,&:focus,&.current{background-image: url("../images/convertedToData/page-booking__nav/unit_first_active.png")}
+      &>a{
+        padding-left: 80px;
+        &:before{left:30px !important;}
+      }
+    }
+    &.unit-4,&.unit-4:hover,&.unit-4:focus,&.unit-4.current{
+      position: relative;
+      width:140px;
+      background-image: url("../images/convertedToData/page-booking__nav/unit_last.png");
+      text-align: center;
+      &:before{
+        content: '';
+        display: block;
+        position: absolute;
+        top:50%;
+        left:40%;
+        margin-top: -21px;
+        width:42px;
+        height: 42px;
+        @include booking_nav__icons-sprite(icon4);
+      }
+    }
+    @for $i from 1 through 3{
+      &.unit-#{$i}>a{
+        &:before{
+          @extend .pseudoBlockAbs;
+          left:50px;
+          top:50%;
+          margin-top: -20px;
+          width:42px;
+          height: 42px;
+          @include booking_nav__icons-sprite(icon#{$i});
+        }
+        &:hover:before,&:focus:before{@include booking_nav__icons-sprite(icon_active#{$i});}
+      }
+      &.unit-#{$i}.current>a:before{@include booking_nav__icons-sprite(icon_active#{$i});}
+    }
+  }
+}
+
+/*booking step 1----------------------
+*/
+.page-booking__step1{
+  padding:10px 40px;
+  position: relative;
+  @extend .bg-pattern;
+  border-bottom: 35px solid $color-often;
+  margin-bottom: 20px;
+  @extend .hList;
+  &>*{margin-right: 40px;}
+  .datepicker{
+    text-align: center;
+    >header{@extend .fontkit-service; color:$color-title;}
+  }
+  .room_choise{
+    font:italic 13px $font-title;
+    color:$color-title;
+    .unit{
+      display: block;
+      margin-bottom: 15px;
+    }
+    .unit__content{
+      margin-left: 10px;
+      position: relative;
+      @extend .icon-square;
+      &:before{background-color: $color-often;}
+      &.current:before,&:hover:before,&:focus:before{@extend .gradient-attention;}
+      &.item-1:after{@include icon_room-sprite(unit-1);top:65%;}
+      &.item-2:after{@include icon_room-sprite(unit-2);top:65%;}
+      &.item-3:after{@include icon_room-sprite(unit-3);top:65%;}
+    }
+  }
+  .button{
+    position: absolute;
+    bottom:-25px;
+    right:10px;
+    padding-right: 50px;
+    padding-left: 50px;
+    @extend .arrowAfter;
+  }
+}
+/*booking step 3----------------------
+*/
+.page-booking__step3{
+  margin-bottom: 160px;
+  color: #282828;
+  padding:10px 0;
+  border-bottom: 35px solid $color-often;
+  background-color:#e9e0d4;
+  td{
+    padding:5px 0;
+    &:first-child{
+      width:280px;
+      padding-right: 30px;
+      text-align: right;
+      font-family: $font-title;
+      font-style: italic;
+    }
+  }
+  .title{
+    text-transform: uppercase;
+    margin: 10px 0;
+    color:$color-attention;
+  }
+  .input__time{width:50px; text-align: center;}
+  .input{width:385px;height: 20px;}
+  .paymentType__radioLabel{
+    display:block;
+    width:405px;
+    >span{
+      font:italic 14px $font-title;
+      display: block;
+      margin-bottom: 5px;
+      &.current{color:$color-attention;}
+    }
+  }
+}
+
+.bottomPageNav{
+  .page-booking__step3 &{margin:20px 10px -30px;}
+  @extend .jList;
+  .unit{
+    @extend .button;
+    padding-left:55px;
+    padding-right:55px;
+  }
+}
+/*SOME page specific elements styles
+------------------------------------------------------------------------------------------------*/
+
+/*SOME page specific elements styles
+------------------------------------------------------------------------------------------------*/
+
+/*SOME page specific elements styles
+------------------------------------------------------------------------------------------------*/
+
 /*SOME page specific elements styles
 ------------------------------------------------------------------------------------------------*/
 

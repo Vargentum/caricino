@@ -25,5 +25,30 @@ $(function(){
 //            columns: 2
 //        });
 //    }
+    $('.paymentType__radio').change(function(){
+        $('.paymentType__radio').parent().next().children('.paymentType__radioLabel').children('span').removeClass('current');
+        if($(this).prop('checked') == true){
+            $(this).parent().next().children('.paymentType__radioLabel').children('span').addClass('current');
+        }
+    });
+    $('.room_choise input').change(function(){
+        $('.room_choise input').next('span').removeClass('current');
+        if($(this).prop('checked') == true){
+            $(this).next('.unit__content').addClass('current');
+        }
+    });
+
     $('.page-aside__datepicker').datepicker();
+    $( "#start_datepicker" ).datepicker({
+        defaultDate: "+1w",
+        onSelect: function( selectedDate ) {
+            $( "#end_datepicker" ).datepicker( "option", "minDate", selectedDate );
+        }
+    });
+    $( "#end_datepicker" ).datepicker({
+        defaultDate: "+1w",
+        onSelect: function( selectedDate ) {
+            $( "#start_datepicker" ).datepicker( "option", "maxDate", selectedDate );
+        }
+    });
 });
