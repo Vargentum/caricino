@@ -22,6 +22,7 @@
 //SPRITING
 @import "sprites/booking_nav__icons/*.png";
 @import "sprites/icon_room/*.png";
+@import "sprites/benefits_list/*.png";
 
 //border-box-sizing for all elems
 *{@include box-sizing(border-box);}
@@ -51,6 +52,10 @@ $font-title: Georgia, Times, "Times New Roman", serif;
   font: italic $font-base-size $font-title;
   color:$color-attention;
 }
+.fontkit-service-title{
+  font:italic 13px $font-title;
+  color:$color-title;
+}
 .fontkit-title{
   font: bold 18px $font-title;
   color:$color-title;
@@ -77,7 +82,8 @@ $color-link-hover:$color-button;
 $color-link-active:$color-attention;
 $color-link-visited:$color-attention;
 $color-link-focused:$color-button;
-a{
+a,
+.link-emulation{
   text-decoration: none;
   @include link-colors($color-link-default, $color-link-hover, $color-link-active, $color-link-visited, $color-link-focused);
   @include single-transition(all,.4s,ease,0s);
@@ -243,8 +249,9 @@ textarea{
   padding:3px 0;
 }
 input[type=radio],input[type=checkbox]{height: auto; width:auto;}
-.figure{position: relative;}
-.figcaption{
+.figure,figure.defaultCss{position: relative;}
+.figcaption,
+figure.defaultCss figcaption{
   position: absolute;
   bottom:0;
   left:0;
@@ -306,7 +313,8 @@ body {
 .page-header{
   margin-bottom: 45px;
   position:relative;
-  background: url("../images/page-header__bg.png") 100% 57px no-repeat;
+  .ie7 &{position: static;}
+  background: url("../images/page-header__bg.png") 100% 100% no-repeat;
 /*lady  */
   &:before{
     @extend .pseudoBlockAbs;
@@ -610,10 +618,68 @@ body {
   }
 }
 
-
+.page-rating{
+  white-space: nowrap;
+  @extend .hList;
+  .unit{
+    @extend .text-hide;
+    width: 17px;
+    height: 22px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAWCAYAAAAvg9c4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhJREFUeNqUlV1IFFEUgO+9487+zOyPura2bZqmJa72sFQP/WAJhVo9FFlW4EMQRA/Rkw9BD/kogYEvPfRDBaEIkRBGkBRhL1LiQylkiPSz+LO2/qzrurszt3PHO+uwzKoNHO7ce8757jnnnjuDRYw2e8ws6EYOeVsAGoUagDnBZBMg0wsgluo9hTY28jnJkcGWoAwgumTRMdjX/MhfLElsztf/G6pHycpj//Cy+aIkxi70P95/ic35es5oiUn9MimD2AJ+p7ui1NaGUmFU7ptu211id3NwdimwEaqDCDdk6bH6OUDkngdNl63C0i4GteLwzhf3fK2wLnG9jdtbDAxMDHCmsHIHJ4i7qqLAu69KvoFSUwilZxFSllGwbOl67V7Jy/TcTuJ+Ohhh6FOtdt4Cu7Xz7rHqqkrPAY+MQx6XEJTtajVR52S0+h2h5B9ooiTzQKrgj8XU8rHFFdfXSFQdGZ9cHrp5Z3D073wiAaw0g2r1+/L2Sn2w0vEKK3MWpMwjpC5DZDGkvStRmCd4a0K1CGQt5IN4QCREsZwanSBnQ6feDYBBSo+UhW4fftPUGiyZuY9SvzFS4wBKso2BpZj0h7DWBESk3ybEW6HzkWewsMKghG+vMu9QY3/v+E/SqUWjgp6umgO1+6Ro+vHJeCcAe9d21zhUPyiVL67WNA51haM7erTUtGhyP+FZoafmXLqL+Rmg2kEZm521iDPfLXp/fawdsCg/tiFlyfSapxUcCZykx6OLNAJTZpTIjlQvAcs1HV1IJgSr34WIM+dtFAhyxROZCBUdaHZNNfjVlho3ybPZ1tI3/xhhjMRrzXKBEbbR3acn6kq2I5qCt7Rur8biZISiPHXdhaL6g5Zis11NI60sc/lYo1M1rcxEhdcdTy1nCuuUlo7nztMzi0V9FEsKy6I8gH1mkSJ2UFzYoVlApKnPrW0Lw/XdT9q9R2DuB/GBFPHR/7C99ND8J3/39PvAbWbP/bDOyoYKINaGowE3jC4uThAHiJ2PTl3XcDif2Vm5XwaKs/5Rxq8WNvQwXb+jGb2xa/TR9B9Fsw1M/keYtxDO1Rr/BBgAxuQHqRss+W4AAAAASUVORK5CYII=);
+    .ie87 &{background-image: url("../images/convertedToData/rating.png")}
+  }
+}
+.page-benefits_list{
+  .page-room &{
+    position: absolute;
+    right:0;
+    bottom:50px;
+  }
+  @extend .hList;
+  .unit{
+    @extend .text-hide;
+    width:30px;
+    height: 30px;
+    @include border-radius(50%);
+    background-color: $color-button;
+    &.disabled{background-color: $color-often;}
+  }
+  @for $i from 1 through 6{
+    .unit-#{$i}{@include benefits_list-sprite(unit-#{$i});}
+    .unit-#{$i}.disabled{@include benefits_list-sprite(unit_active-#{$i});}
+  }
+}
 /*INDEX page specific elements styles
 -----------------------------------------------------------------------------------------------*/
-
+.page-index{}
+.page-index__image{
+  margin-bottom: 30px;
+  width:714px;
+  height: 204px;
+  position: relative;
+  background-image: url("../images/convertedToData/index__border.png");
+  img{
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-left: -351px;
+    margin-top: -84px;
+  }
+}
+.page-index__news{
+  .header{@extend .hList;padding:0 10px;}
+  .title{@extend .fontkit-title;}
+  .view_all{
+    @extend .arrowAfter;
+    @extend .fontkit-service;
+    padding:0 5px;
+    border-left: 1px solid #e5e5e5;
+    margin:0 5px;
+    &:hover,&:focus{padding-left: 15px;}
+  }
+}
 /*BANQUET page specific elements styles
 ------------------------------------------------------------------------------------------------*/
 .page-template__banquet{
@@ -752,7 +818,7 @@ body {
 }
 /*CONTACTS page specific elements styles
 ------------------------------------------------------------------------------------------------*/
-
+.page-contacts__map{margin-bottom: 20px;}
 .page-contacts__address{
   margin:15px 0;
   @extend .icon-square;
@@ -812,6 +878,7 @@ body {
   margin:10px 0;
   @extend .hList;
   .unit{
+    position: relative;
     height: 54px;
     background-image: url("../images/convertedToData/page-booking__nav/unit.png");
     width:280px;
@@ -839,9 +906,7 @@ body {
       background-image: url("../images/convertedToData/page-booking__nav/unit_last.png");
       text-align: center;
       &:before{
-        content: '';
-        display: block;
-        position: absolute;
+        @extend .pseudoBlockAbs;
         top:50%;
         left:40%;
         margin-top: -21px;
@@ -857,6 +922,8 @@ body {
           left:50px;
           top:50%;
           margin-top: -20px;
+          .ie &{margin-top: -9px;}
+          @include respond-to(ie10){margin-top: -9px;}
           width:42px;
           height: 42px;
           @include booking_nav__icons-sprite(icon#{$i});
@@ -868,6 +935,75 @@ body {
   }
 }
 
+/*booking step 2----------------------
+*/
+
+
+.page-booking__step2{
+  @extend .bg-pattern;
+  pading:10px;
+  border-bottom: 35px solid $color-often;
+  margin-bottom: 160px;
+  position: relative;
+  .header{
+    padding-top:10px;
+    button{
+      background: none;
+      border:none;
+      font-style: italic;
+      font-family: $font-title;
+      @extend .arrowAfter;
+      @extend .link-emulation;
+    }
+    label{
+      margin-left:10px;
+      @extend .fontkit-service-title;
+    }
+    input{
+      text-align: center;
+      height: 28px;
+      width: 115px;
+      position: relative;
+    }
+  }
+  .content{
+    padding:10px;
+    >.content__title{
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .unit{
+      display: block;
+      @extend .jList;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #f9f2e9;
+      &.current{background: $color-body;}
+    }
+    .unit__title{
+      text-transform: uppercase;
+      color:$color-title;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .unit__info{
+      padding:0 15px;
+      ul{list-style-type: disc;margin-left: 20px;}
+    }
+    input[type=radio]{margin-right: 8px;}
+    .unit__view_all{
+      @extend .arrowAfter;
+      font-style: italic;
+      font-family: $font-title;
+    }
+    .unit__price{
+      font-size: 24px;
+      font-weight: bold;
+      color:$color-attention;
+      margin-right: 30px;
+    }
+  }
+}
 /*booking step 1----------------------
 */
 .page-booking__step1{
@@ -895,9 +1031,9 @@ body {
       @extend .icon-square;
       &:before{background-color: $color-often;}
       &.current:before,&:hover:before,&:focus:before{@extend .gradient-attention;}
-      &.item-1:after{@include icon_room-sprite(unit-1);top:65%;}
-      &.item-2:after{@include icon_room-sprite(unit-2);top:65%;}
-      &.item-3:after{@include icon_room-sprite(unit-3);top:65%;}
+      &.item-1:after{@include icon_room-sprite(unit-1);top:65%;left:0;}
+      &.item-2:after{@include icon_room-sprite(unit-2);top:65%;left:0;}
+      &.item-3:after{@include icon_room-sprite(unit-3);top:65%;left:0;}
     }
   }
   .button{
@@ -947,7 +1083,7 @@ body {
 }
 
 .bottomPageNav{
-  .page-booking__step3 &{margin:20px 10px -30px;}
+  margin:20px 10px -30px;
   @extend .jList;
   .unit{
     @extend .button;
@@ -955,23 +1091,169 @@ body {
     padding-right:55px;
   }
 }
-/*SOME page specific elements styles
+/*PRICE page specific elements styles
 ------------------------------------------------------------------------------------------------*/
+.page-price_table{
+  margin-bottom: 15px;
+  border-collapse: separate;
+  width:100%;
+  tr:nth-child(even) td{background-color: #f9f2e9;}
+  th,td{
+    vertical-align: middle;
+    &:first-child{width:210px;}
+  }
+  th{
+    &:first-child{
+      font-size: 16px; text-align: center;
+    }
+    padding-top: 8px;
+    padding-bottom: 8px;
+    @extend .fontkit-label;
+    background-color: $color-often;
+  }
+  td{
+    &:first-child{border-left-width: 10px;}
+    text-align: center;
+    border-right:10px solid #e9e0d4;
+    border-top:10px solid #e9e0d4;
+    background-color: $color-body;
+    height: 60px;
+    color:$color-title;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+  .price__label{
+    padding-left:5px;
+    &>span{width:100px;}
+    @extend .icon-square;
+    &:before{@extend .gradient-attention;}
+    &.unit-1:after{@include icon_room-sprite(unit-1);}
+    &.unit-2:after{@include icon_room-sprite(unit-2);}
+    &.unit-3:after{@include icon_room-sprite(unit-3);}
+  }
+  .price{
+    width:155px;
+    font-size: 18px;
+    color:$color-attention;
+    font-weight:bold;
+    &:after{content: ' руб'; text-transform: lowercase;}
+  }
+  .price__unknown{
+    
+    position: relative;
+    width:140px;
+    &:before{
+      @extend .pseudoBlockAbs;
+      width:157px;
+      height: 1px;
+      background-color: #e9e0d4;
+      left:-5px;top:30px;
+      @include rotate(22deg);
+      @include respond-to(ie10){
+        @include rotate(18deg);
+        top:24px;
+      }
+    }
+    .ie &:before{@include rotate(18deg); top:24px;}
+    .ie &:after{@include rotate(-18deg);top:24px;}
 
-/*SOME page specific elements styles
+    &:after{
+      @extend .pseudoBlockAbs;
+      width:157px;
+      height: 1px;
+      background-color: #e9e0d4;
+      right:-5px;top:30px;
+      @include rotate(-22deg);
+      @include respond-to(ie10){
+        @include rotate(-18deg);
+        top:24px;
+      }
+    }
+  }
+  .goto{width:30px;}
+  .goto__link{
+    color:#723a0f;
+    @include link-simple-colors(#723a0f,$color-button);
+    display: block;
+    height: 100%;
+    @include box-shadow(1px 1px 1px rgba(0,0,0,.29), inset 1px 1px 1px rgba(255,255,255,.44));
+    background-color: $color-button;
+    &:before{content: '▶';line-height: 60px;}
+    &:hover,&:focus{background-color: #723a0f;}
+  }
+  .footer{
+    @extend .fontkit-service;
+    text-transform: none;
+    font-weight: bold;
+    height: auto;
+    background-color: #e9e0d4;
+    padding-bottom: 10px;
+  }
+}
+/*ROOMS page specific elements styles
 ------------------------------------------------------------------------------------------------*/
-
-/*SOME page specific elements styles
-------------------------------------------------------------------------------------------------*/
-
-/*SOME page specific elements styles
-------------------------------------------------------------------------------------------------*/
-
-/*SOME page specific elements styles
-------------------------------------------------------------------------------------------------*/
-
-/*SOME page specific elements styles
-------------------------------------------------------------------------------------------------*/
+.page-room{
+  .page-index &{border-bottom: none;}
+  border-bottom: 35px solid #e5e5e5;
+  margin-bottom: 10px;
+  @extend .jList_top;
+  &>*{height: 270px; margin-bottom: 10px;}
+  .info{
+    @extend .bg-pattern;
+    width:385px;
+    border-bottom: 38px solid $color-often;
+    ul{margin:0;}
+  }
+  .info__header{
+    background-color: $color-often;
+    @extend .hList;
+    padding:0 15px;
+    height: 38px;
+    @extend .vCtr;
+    width:385px;
+    text-align: center;
+  }
+  .info__title{
+    @extend .fontkit-label;
+    margin-right: 12px;
+  }
+  .info__content{
+    padding:10px 15px 0;
+    ul{
+      padding-left: 18px; list-style-type: disc;
+      li{
+        &:after{content: ',';}
+        &:last-child:after{content: '.'}
+      }
+    }
+  }
+  .info__price{
+    margin:5px 0;
+    font-weight: bold; font-size: 18px; color:$color-attention;
+    dt{float: left;margin-right: 5px;}
+  }
+  .button__wrap{
+    margin:15px 0 -20px;
+    text-align: center;
+  }
+  .figure{}
+  .thumbnails{
+    &>*{display: block;margin-bottom: 10px;}
+  }
+  .thumbnails__content{
+    cursor: pointer;
+    @extend .hList;
+    display: block;
+    background-color: $color-often;
+    &:hover,&.current{@extend .gradient-attention;}
+  }
+  .thumbnails__content__inner{width:115px;margin-left: 5px;}
+  .thumbnails__title{
+    @extend .fontkit-label;
+    width:85px;
+  }
+  .page-rating{@include inline-block;}
+}
 
 
 /*PLUGINS styles
@@ -1052,8 +1334,12 @@ body {
   @include link-simple-colors($color-title,$color-body);
   @include single-transition(none);
   line-height: 1.7;
-  &:hover,&:focus{@extend .gradient-attention;}
+  &:hover,&:focus,&.current{@extend .gradient-attention;}
+  #end_datepicker &{
+    &:hover,&:focus,&.current{@extend .gradient-attention-rare;}
+  }
 }
+.ui-datepicker-trigger{position: relative;top:-1px;}
 .ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
 .ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }
@@ -1078,7 +1364,9 @@ body {
 /*DIRTY HACKS
 ------------------------------------------------------------------------------------------------*/
 //firefox
-@-moz-document url-prefix() {}
+@-moz-document url-prefix() {
+  .page-price_table .price__label:after{top:418px;}
+}
 
 //opera
 @media (min-resolution: .001dpcm) {

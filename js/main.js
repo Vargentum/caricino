@@ -37,6 +37,13 @@ $(function(){
             $(this).next('.unit__content').addClass('current');
         }
     });
+    $('.page-booking__step2__unit__radio').change(function(){
+        $('.page-booking__step2 .unit').removeClass('current');
+        if($(this).prop('checked') == true){
+            $(this).parent().parent().addClass('current');
+        }
+    });
+
 
     $('.page-aside__datepicker').datepicker();
     $( "#start_datepicker" ).datepicker({
@@ -49,6 +56,24 @@ $(function(){
         defaultDate: "+1w",
         onSelect: function( selectedDate ) {
             $( "#start_datepicker" ).datepicker( "option", "maxDate", selectedDate );
+        }
+    });
+    $( "#from" ).datepicker({
+        defaultDate: "+1w",
+        showOn: "button",
+        buttonImage: "images/datepicker.jpg",
+        buttonImageOnly: true,
+        onSelect: function( selectedDate ) {
+            $( "#to" ).datepicker( "option", "minDate", selectedDate );
+        }
+    });
+    $( "#to" ).datepicker({
+        defaultDate: "+1w",
+        showOn: "button",
+        buttonImage: "images/datepicker.jpg",
+        buttonImageOnly: true,
+        onSelect: function( selectedDate ) {
+            $( "#from" ).datepicker( "option", "maxDate", selectedDate );
         }
     });
 });

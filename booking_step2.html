@@ -65,103 +65,94 @@
 
 
   <!--START page template-->
-  <div class="page-template" role="main">
-    <!--map-->
-    <div class="page-contacts__map">
-      <iframe width="710" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.ua/maps?f=q&amp;source=s_q&amp;hl=ru&amp;geocode=&amp;q=%D0%BC%D0%BE%D1%81%D0%BA%D0%B2%D0%B0&amp;aq=&amp;sll=55.751242,37.618422&amp;sspn=0.537922,1.501007&amp;ie=UTF8&amp;hq=&amp;hnear=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0,+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4+%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0,+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&amp;t=m&amp;z=10&amp;ll=55.751242,37.618422&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com.ua/maps?f=q&amp;source=embed&amp;hl=ru&amp;geocode=&amp;q=%D0%BC%D0%BE%D1%81%D0%BA%D0%B2%D0%B0&amp;aq=&amp;sll=55.751242,37.618422&amp;sspn=0.537922,1.501007&amp;ie=UTF8&amp;hq=&amp;hnear=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0,+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4+%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0,+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&amp;t=m&amp;z=10&amp;ll=55.751242,37.618422" style="color:#0000FF;text-align:left">Просмотреть увеличенную карту</a></small>
-    </div>
-    <!--map-->
-    <h1 class="page-template__h1">Контакты</h1>
-    <address class="page-contacts__address">
-      <span>142784  Московская обл., Ленинский р-он,<br> г.Московский, микрорайон 1, д.22 а</span>
-    </address>
-    <address class="page-contacts__telephone">
-      <div>
-        <p>тел.+7(499) 678 80 10</p>
-        <p>тел.+7(499) 467 45 34</p>
-      </div>
-    </address>
-    <a href="#" class="page-contacts__email"><span>info@site.ru</span></a>
-    <!--form-->
-    <section class="page-contacts__feedback">
-      <h2 class="title">Обратная связь</h2>
-      <form class="content">
-        <label class="unit">
-          <span class="unit__label">Фамилия</span>
-          <input type="text" class="unit__content">
-        </label>
-        <label class="unit">
-          <span class="unit__label">Имя</span>
-          <input type="text" class="unit__content">
-        </label>
-        <label class="unit">
-          <span class="unit__label">Отчество</span>
-          <input type="text" class="unit__content">
-        </label>
-        <label class="unit">
-          <span class="unit__label">Email</span>
-          <input type="email" class="unit__content">
-        </label>
-        <label class="unit">
-          <span class="unit__label">Телефон 1 Телефон 2</span>
-          <input type="tel" class="unit__content">
-        </label>
-        <label class="unit">
-          <span class="unit__label">Сообщение</span>
-          <textarea class="unit__content"></textarea>
-        </label>
-        <button type="submit" class="button">Отправить</button>
-      </form>
-    </section>
-  </div><!--END page template-->
+  <!--booking nav-->
+  <ul class="page-booking__nav">
+    <!--unclosed LI elems not a bug, it's a feature!-->
+    <li class="unit unit-1"><a href="#">Выбор периода<br> проживания</a>
+    <li class="unit unit-2"><a href="#">Выбор номера<br> для бронирования</a>
+    <li class="unit unit-3 current"><a href="#">Ввод данных<br> для бронирования</a>
+    <li class="unit unit-4"></li>
+  </ul>
 
-  <!--left sidebar-->
-  <aside class="page-aside" itemscope itemtype='http://schema.org/WPSideBar'>
-    <!--starting purchase vidget-->
-    <form class="page-aside__purchaseVidget">
-      <h2 class="title">Выберите дату поселения:</h2>
-      <div class="page-aside__datepicker"></div>
-      <button type="submit" class="button">выбрать номер</button>
-    </form>
-    <!--banner-->
-    <a href="#" class="page-aside__bnr bnr_with_car">
-      <span class="label">Встречи и проводы </span>
-      <img src="images/page-aside__bnr1.jpg" class="image" alt="">
-    </a>
-    <!--banner-->
-    <a href="#" class="page-aside__bnr">
-      <span class="label">Банкеты и тренинги</span>
-      <img src="images/page-aside__bnr2.jpg" class="image" alt="">
-    </a>
-    <!--banner-->
-    <a href="#" class="page-aside__bnr">
-      <span class="label">Отель на схеме метро</span>
-      <img src="images/page-aside__bnr3.jpg" class="image" alt="">
-    </a>
-    <!--aside feedbacks-->
-    <section class="page-aside__feedbacks">
-      <header class="hList">
-        <h2 class="title">Отзывы о нас</h2>
-        <a href="#" class="view_all">все отзывы</a>
-      </header>
-      <!--feedback-->
-      <div class="unit">
-        Большое спасибо персоналу гостиницы!теплый прием,хорошее обслуживание,молодцы,очень было приятно остановиться!
-        <span class="unit__author">Нигмадзянова Зоя</span>
-      </div>
-      <!--feedback-->
-      <div class="unit">
-        Большое спасибо персоналу гостиницы!теплый прием,хорошее обслуживание,молодцы,очень было приятно остановиться!
-        <span class="unit__author">Нигмадзянова Зоя</span>
-      </div>
-      <!--feedback-->
-      <div class="unit">
-        Большое спасибо персоналу гостиницы!теплый прием,хорошее обслуживание,молодцы,очень было приятно остановиться!
-        <span class="unit__author">Нигмадзянова Зоя</span>
-      </div>
-    </section>
-  </aside>
-  <!--end left sidebar-->
+  <form class="page-booking__step2" role="main">
+    <header class="header" id="timeSelection">
+      <label for="from">Дата поселения:</label>
+      <input type="text" id="from" name="from"/>
+      <label for="to">Дата выезда:</label>
+      <input type="text" id="to" name="to"/>
+      <button type="submit">проверить</button>
+    </header>
+
+    <!--aviable rooms section-->
+    <section class="content">
+      <h2 class="content__title">Доступные номера на заданный период:</h2>
+      <!--one Room-->
+      <label class="unit">
+        <div class="hList">
+          <input type="radio" class="page-booking__step2__unit__radio" name='page-booking__step2__unit__radio'>
+          <div>
+            <h3 class="unit__title">2x местный номер</h3>
+            <img src="images/tmp/page-booking__step2__unit_image.jpg" alt="">
+          </div>
+          <div class="unit__info">
+            В номере:
+            <ul>
+              <li>мягкая мебель</li>
+              <li>кровать</li>
+              <li>телевизор</li>
+            </ul>
+            <a href="#" class="unit__view_all">детальней номерной фонд</a>
+          </div>
+        </div>
+        <span class="unit__price">2100 руб</span>
+      </label>
+      <!--one Room-->
+      <label class="unit">
+        <div class="hList">
+          <input type="radio" class="page-booking__step2__unit__radio" name='page-booking__step2__unit__radio'>
+          <div>
+            <h3 class="unit__title">2x местный номер</h3>
+            <img src="images/tmp/page-booking__step2__unit_image.jpg" alt="">
+          </div>
+          <div class="unit__info">
+            В номере:
+            <ul>
+              <li>мягкая мебель</li>
+              <li>кровать</li>
+              <li>телевизор</li>
+            </ul>
+            <a href="#" class="unit__view_all">детальней номерной фонд</a>
+          </div>
+        </div>
+        <span class="unit__price">2100 руб</span>
+      </label>
+      <!--one Room-->
+      <label class="unit">
+        <div class="hList">
+          <input type="radio" class="page-booking__step2__unit__radio" name='page-booking__step2__unit__radio'>
+          <div>
+            <h3 class="unit__title">2x местный номер</h3>
+            <img src="images/tmp/page-booking__step2__unit_image.jpg" alt="">
+          </div>
+          <div class="unit__info">
+            В номере:
+            <ul>
+              <li>мягкая мебель</li>
+              <li>кровать</li>
+              <li>телевизор</li>
+            </ul>
+            <a href="#" class="unit__view_all">детальней номерной фонд</a>
+          </div>
+        </div>
+        <span class="unit__price">2100 руб</span>
+      </label>
+    </section><!--end aviable room-->
+
+    <nav class="bottomPageNav">
+      <a href="#" class="unit arrowBefore">Назад</a>
+      <a href="#" class="unit arrowAfter">Далее</a>
+    </nav>
+  </form><!--END page template-->
 
   <div class="helper-footer"></div>
 </div><!-- END page-body -->
